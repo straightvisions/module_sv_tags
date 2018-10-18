@@ -1,0 +1,35 @@
+.sv_tags{
+	list-style-type:none;
+	display:flex;
+	padding:12px 0;
+	border-top:1px solid #e5e5e5;
+	border-bottom:1px solid #e5e5e5;
+	flex-wrap: wrap;
+}
+.sv_tags li {
+	width: 30%;
+	margin-left: 0;
+}
+li.sv_tags_first {
+	width: 100%;
+	margin-left: 0;
+}
+.sv_tags li a{
+	font-size:14px;
+	font-weight:700;
+	letter-spacing:0px;
+	color:#ea6f5b;
+}
+
+@media (min-width: 768px) {
+	.sv_tags li,
+	.sv_tags_first {
+		width: auto;
+	}
+	.sv_tags li {
+		margin-left: 35px;
+	}
+	li.sv_tags_first {
+		margin-left: 0;
+	}
+}
