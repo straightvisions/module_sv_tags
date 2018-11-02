@@ -29,8 +29,6 @@
 			$this->load_settings();
 		}
 		public function init(){
-			add_action('wp_head', array($this, 'wp_head'));
-			
 			if(!is_admin()){
 				$this->load_settings();
 			}
