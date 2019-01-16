@@ -63,7 +63,7 @@
 			$counts									= array_reverse( $counts, true );
 			$i										= 0;
 			
-			$output									= '<ul class="'.$this->get_module_name().' mb-4 mx-4 mx-lg-0"><li class="'.$this->get_module_name().'_first"><strong>'.__('Beliebte Themen', $this->get_module_name()).'</strong></li>';
+			$output									= '<ul class="'.$this->get_module_name().' mb-4 mx-lg-0"><li class="'.$this->get_module_name().'_first"><strong>'.__('Beliebte Themen', $this->get_module_name()).'</strong></li>';
 			foreach ( $counts as $tag => $count ) {
 				$i++;
 				$tag_link						= esc_url($tag_links[$tag]);
