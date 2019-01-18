@@ -9,6 +9,8 @@
 .sv_tags li {
 	width: 30%;
 	margin-left: 0;
+	font-family:NeueEinstellung;
+
 }
 li.sv_tags_first {
 	width: 100%;
