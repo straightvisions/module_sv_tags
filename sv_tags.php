@@ -24,6 +24,9 @@
 			add_action('admin_init', array($this, 'admin_init'));
 			add_action('init', array($this, 'init'));
 		}
+		public function after_setup_theme(){
+			load_theme_textdomain( $this->get_module_name(), $this->get_path() . 'languages' );
+		}
 		public function admin_init(){
 			$this->get_root()->add_section($this, 'settings');
 			$this->load_settings();
@@ -63,7 +66,7 @@
 			$counts									= array_reverse( $counts, true );
 			$i										= 0;
 			
-			$output									= '<ul class="'.$this->get_module_name().' mb-4 mx-lg-0"><li class="'.$this->get_module_name().'_first"><strong>'.__('Beliebte Themen', $this->get_module_name()).'</strong></li>';
+			$output									= '<ul class="'.$this->get_module_name().' mb-4 mx-lg-0"><li class="'.$this->get_module_name().'_first"><strong>'.__('Top Topics', $this->get_module_name()).'</strong></li>';
 			foreach ( $counts as $tag => $count ) {
 				$i++;
 				$tag_link						= esc_url($tag_links[$tag]);
