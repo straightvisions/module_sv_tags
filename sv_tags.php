@@ -76,7 +76,9 @@ class sv_tags extends init {
 		$counts									= array_reverse( $counts, true );
 		$i										= 0;
 
-		$output									= '<div class="' . $this->get_module_name() . '">';
+		$output									= '<div class="' . $this->get_prefix( 'wrapper' ) . '">
+												<span class="' . $this->get_prefix( 'title' ) . '">Tags:</span>
+												<div class="' . $this->get_prefix() . '">';
 		$separator                              = ' ';
 
 		foreach ( $counts as $tag => $count ) {
