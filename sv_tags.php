@@ -99,7 +99,7 @@ class sv_tags extends init {
 	public function shortcode( $settings, $content = '' ) {
 		// Load Styles
 		static::$scripts->create( $this )
-		                ->set_source( $this->get_url( 'lib/css/frontend.css' ), $this->get_path( 'lib/css/frontend.css' ) );
+		                ->set_path( 'lib/css/frontend.css' );
 
 		$settings								= shortcode_atts(
 			array(
