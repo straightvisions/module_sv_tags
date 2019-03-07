@@ -37,6 +37,11 @@ class sv_tags extends init {
 
 		// Shortcodes
 		add_shortcode( $this->get_module_name(), array( $this, 'shortcode' ) );
+
+		$this->scripts_queue['frontend']			= static::$scripts->create( $this )
+			->set_ID('frontend')
+			->set_path( 'lib/css/frontend.css' )
+			->set_inline(true);
 	}
 
 	public function load_settings() {
@@ -97,10 +102,6 @@ class sv_tags extends init {
 	}
 
 	public function shortcode( $settings, $content = '' ) {
-		// Load Styles
-		static::$scripts->create( $this )
-		                ->set_path( 'lib/css/frontend.css' );
-
 		$settings								= shortcode_atts(
 			array(
 				'inline'						=> false,
@@ -109,6 +110,11 @@ class sv_tags extends init {
 			$settings,
 			$this->get_module_name()
 		);
+
+		// Load Styles
+		$this->scripts_queue['frontend']
+			->set_inline($settings['inline'])
+			->set_is_enqueued();
 
 		return $this->get_most_popular( $settings );
 	}
