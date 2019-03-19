@@ -19,6 +19,9 @@ class sv_tags extends init {
 	}
 
 	public function init() {
+		// Translates the module
+		load_theme_textdomain( $this->get_module_name(), $this->get_path( 'languages' ) );
+
 		// Module Info
 		$this->set_module_title( 'SV Tags' );
 		$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', $this->get_module_name() ) );
@@ -31,9 +34,6 @@ class sv_tags extends init {
 
 		// Loads Settings
 		$this->load_settings();
-
-		// Action Hooks
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 
 		// Shortcodes
 		add_shortcode( $this->get_module_name(), array( $this, 'shortcode' ) );
@@ -50,10 +50,6 @@ class sv_tags extends init {
 		                                     ->set_title( 'Max number of tags in list.' )
 		                                     ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', $this->get_module_name() ) )
 		                                     ->load_type( 'number' );
-	}
-
-	public function after_setup_theme() {
-		load_theme_textdomain( $this->get_module_name(), $this->get_path() . 'languages' );
 	}
 
 	private function get_most_popular( $settings ) {
