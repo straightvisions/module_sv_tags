@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sv_tags\n"
+"POT-Creation-Date: 2019-03-19 19:13+0100\n"
+"PO-Revision-Date: 2019-03-19 19:15+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: sv_tags.php:27
+msgid ""
+"This module gives the ability to display and manage tags via the "
+"\"[sv_tags]\" shortcode."
+msgstr ""
+"Dieses Modul gibt die Möglichkeit, Schlagwörter über den Shortcode "
+"\"[sv_tags]\" anzuzeigen und zu verwalten."
+
+#: sv_tags.php:31
+msgid "Manage Tags"
+msgstr "Schlagwörter verwalten"
+
+#: sv_tags.php:51
+msgid ""
+"You can define the number of tags that should be outputted on the website, "
+"by setting a limit."
+msgstr ""
+"Du kannst die Anzahl der Schlagwörter definieren, die auf der Website "
+"ausgegeben werden sollen, indem du ein Limit festlegst."
+
+#: sv_tags.php:91
+#, php-format
+msgid "View all posts in %s"
+msgstr "Zeige alle Beiträge in %s"
+
+#. Theme Name of the plugin/theme
+msgid "sv_tags"
+msgstr "sv_tags"
+
+#~ msgid "Top Topics"
+#~ msgstr "Beliebte Themen"
