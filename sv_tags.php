@@ -32,72 +32,35 @@ class sv_tags extends init {
 		$this->set_section_type( 'settings' );
 		$this->get_root()->add_section( $this );
 
-		// Loads Settings
-		$this->load_settings();
-
 		// Shortcodes
 		add_shortcode( $this->get_module_name(), array( $this, 'shortcode' ) );
 
-		$this->scripts_queue['frontend']			= static::$scripts->create( $this )
-			->set_ID('frontend')
-			->set_path( 'lib/css/frontend.css' )
-			->set_inline(true);
+		$this->load_settings()->register_scripts();
 	}
 
-	public function load_settings() {
-		$this->s['limit'] = static::$settings->create($this)
-		                                     ->set_ID( 'limit' )
-		                                     ->set_title( 'Max number of tags in list.' )
-		                                     ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', $this->get_module_name() ) )
-		                                     ->load_type( 'number' );
+	public function load_settings() :sv_tags {
+		$this->s['limit'] = static::$settings
+			->create( $this )
+			->set_ID( 'limit' )
+			->set_title( 'Max number of tags in list.' )
+			->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', $this->get_module_name() ) )
+			->load_type( 'number' );
+
+		return $this;
 	}
 
-	private function get_most_popular( $settings ) {
-		if ( ! $this->tags ) {
-			$this->tags							= get_tags(
-				array(
-					'pad_counts'				=> true
-				)
-			);
-		}
+	protected function register_scripts() :sv_tags{
+		// Register Styles
+		$this->scripts_queue['default']        = static::$scripts
+			->create( $this )
+			->set_ID( 'default' )
+			->set_path( 'lib/frontend/css/default.css' )
+			->set_inline( true );
 
-		if ( ! $this->tags ) {
-			return false;
-		}
-
-		$counts									= $tag_links = array();
-
-		foreach ( $this->tags as $tag ) {
-			$counts[ $tag->name ]				= $tag->count;
-			$tag_links[ $tag->name ]			= get_tag_link( $tag->term_id );
-		}
-
-		asort( $counts );
-
-		$counts									= array_reverse( $counts, true );
-		$i										= 0;
-
-		$output									= '<div class="' . $this->get_prefix( 'wrapper' ) . '">
-												<span class="' . $this->get_prefix( 'title' ) . '">Tags:</span>
-												<div class="' . $this->get_prefix() . '">';
-		$separator                              = ' ';
-
-		foreach ( $counts as $tag => $count ) {
-			$i++;
-			$tag_link					    	= esc_url( $tag_links[ $tag ] );
-			$tag							    = str_replace( ' ', '&nbsp;', esc_html( $tag ) );
-
-			if ( $i <= ( $settings['limit'] ? $settings['limit'] : 3 ) ) {
-				$output						    .= '<a href="' . $tag_link . '" alt="' . esc_attr( sprintf( __( 'View all posts in %s', $this->get_module_name() ), $tag ) ) . '">' . $tag . '</a>' . $separator;
-			}
-		}
-
-		$output									.= '</div>';
-
-		return $output;
+		return $this;
 	}
 
-	public function shortcode( $settings, $content = '' ) {
+	public function shortcode( $settings, $content = '' ) :string {
 		$settings								= shortcode_atts(
 			array(
 				'inline'						=> false,
@@ -107,11 +70,33 @@ class sv_tags extends init {
 			$this->get_module_name()
 		);
 
-		// Load Styles
-		$this->scripts_queue['frontend']
-			->set_inline($settings['inline'])
-			->set_is_enqueued();
+		return $this->router( $settings );
+	}
 
-		return $this->get_most_popular( $settings );
+	// Handles the routing of the templates
+	protected function router( array $settings ) :string {
+		$template = array(
+			'name'      => 'default',
+			'scripts'   => array(
+				$this->scripts_queue[ 'default' ]->set_inline( $settings['inline'] ),
+			),
+		);
+
+		return $this->load_template( $template, $settings );
+	}
+
+	// Loads the templates
+	protected function load_template( array $template, array $settings ) :string {
+		ob_start();
+		foreach ( $template['scripts'] as $script ) {
+			$script->set_is_enqueued();
+		}
+
+		// Loads the template
+		include ( $this->get_path('lib/frontend/tpl/' . $template['name'] . '.php' ) );
+		$output							        = ob_get_contents();
+		ob_end_clean();
+
+		return $output;
 	}
 }
