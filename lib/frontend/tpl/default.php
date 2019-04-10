@@ -1,5 +1,8 @@
 <?php
 $tags                                           = get_tags( array( 'pad_counts' => true ) );
+
+if ( count( $tags ) > 0 ) {
+
 $counts									        = $tag_links = array();
 
 foreach ( $tags as $tag ) {
@@ -37,3 +40,4 @@ $i										        = 0;
 	?>
 	</div>
 </div>
+<?php } ?>
