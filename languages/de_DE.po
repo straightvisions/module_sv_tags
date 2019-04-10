@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sv_tags\n"
-"POT-Creation-Date: 2019-03-19 19:13+0100\n"
-"PO-Revision-Date: 2019-03-19 19:15+0100\n"
+"POT-Creation-Date: 2019-04-09 10:58+0200\n"
+"PO-Revision-Date: 2019-04-09 10:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -21,6 +21,15 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
+#: lib/frontend/tpl/default.php:18
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: lib/frontend/tpl/default.php:30
+#, php-format
+msgid "View all posts in %s"
+msgstr "Zeige alle Beiträge in %s"
+
 #: sv_tags.php:27
 msgid ""
 "This module gives the ability to display and manage tags via the "
@@ -33,18 +42,13 @@ msgstr ""
 msgid "Manage Tags"
 msgstr "Schlagwörter verwalten"
 
-#: sv_tags.php:51
+#: sv_tags.php:46
 msgid ""
 "You can define the number of tags that should be outputted on the website, "
 "by setting a limit."
 msgstr ""
 "Du kannst die Anzahl der Schlagwörter definieren, die auf der Website "
 "ausgegeben werden sollen, indem du ein Limit festlegst."
-
-#: sv_tags.php:91
-#, php-format
-msgid "View all posts in %s"
-msgstr "Zeige alle Beiträge in %s"
 
 #. Theme Name of the plugin/theme
 msgid "sv_tags"
