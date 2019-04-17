@@ -1,13 +1,8 @@
 .sv_100_sv_tags_wrapper {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	//border-top: 1px solid rgba( 0, 0, 0, .1 );
-	//border-bottom: 1px solid rgba( 0, 0, 0, .1 );
+	padding: 10px var( --padding );
 	margin-top: 50px;
-	justify-items: center;
 }
 
 .sv_100_sv_tags_title {
@@ -22,6 +17,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .sv_100_sv_tags a {
@@ -37,4 +33,10 @@
 .sv_100_sv_tags a:hover {
 	background-color: rgb( var( --color-highlight ) );
 	color: rgb( var( --color-contrast ) );
+}
+
+@media ( min-width: 1050px ) {
+	.sv_100_sv_single_with_sidebar .sv_100_sv_tags_wrapper {
+		padding-right: 0;
+	}
 }
