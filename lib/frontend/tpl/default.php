@@ -18,7 +18,7 @@ $i										        = 0;
 
 <div class="<?php echo $this->get_prefix( 'wrapper' ); ?>">
 	<span class="<?php echo $this->get_prefix( 'title' ); ?>">
-		<?php _e( 'Tags', $this->get_module_name() ); ?>:
+		<?php _e( 'Tags', $this->get_module_name() ); ?>
 	</span>
 	<div class="<?php echo $this->get_prefix(); ?>">
 	<?php
@@ -30,7 +30,7 @@ $i										        = 0;
 		if ( $i <= ( $settings['limit'] ? $settings['limit'] : 3 ) ) {
 		?>
 		<a href="<?php echo $tag_link; ?>"
-		   alt="<?php echo esc_attr( sprintf( __( 'View all posts in %s', $this->get_module_name() ), $tag ) ); ?>">
+		   title="<?php echo esc_attr( sprintf( __( 'View all posts in %s', $this->get_module_name() ), $tag ) ); ?>">
 			<?php echo $tag; ?>
 		</a>
 		<?php
