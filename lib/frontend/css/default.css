@@ -8,7 +8,7 @@
 .sv_100_sv_tags_title {
 	margin-bottom: 10px;
 	font-size: .9rem;
-	color: rgb( var( --color-secondary ) );
+	color: rgb( var( --sv-100-color-secondary ) );
 	display: flex;
 	justify-content: center;
 }
@@ -21,18 +21,18 @@
 }
 
 .sv_100_sv_tags a {
-	color: rgb( var( --color-secondary ) );
+	color: rgb( var( --sv-100-color-secondary ) );
 	text-decoration: none;
 	font-size: .8rem;
-	background: rgba( var( --color-bg-secondary ), 1 );
+	background: rgba( var( --sv-100-color-bg-secondary ), 1 );
 	padding: 5px 10px;
 	margin: 2px;
 	transition: .25s ease;
 }
 
 .sv_100_sv_tags a:hover {
-	background-color: rgb( var( --color-highlight ) );
-	color: rgb( var( --color-contrast ) );
+	background-color: rgb( var( --sv-100-color-highlight ) );
+	color: rgb( var( --sv-100-color-contrast ) );
 }
 
 @media ( min-width: 1050px ) {
