@@ -14,10 +14,6 @@ namespace sv_100;
 class sv_tags extends init {
 	private $tags								= false;
 
-	public function __construct() {
-
-	}
-
 	public function init() {
 		// Module Info
 		$this->set_module_title( 'SV Tags' );
@@ -28,9 +24,6 @@ class sv_tags extends init {
 		$this->set_section_desc( __( 'Manage Tags', 'sv_100' ) );
 		$this->set_section_type( 'settings' );
 		$this->get_root()->add_section( $this );
-
-		// Shortcodes
-		add_shortcode( $this->get_module_name(), array( $this, 'shortcode' ) );
 
 		$this->load_settings()->register_scripts();
 	}
@@ -57,7 +50,7 @@ class sv_tags extends init {
 		return $this;
 	}
 
-	public function shortcode( $settings, $content = '' ) :string {
+	public function load( $settings = array() ) :string {
 		$settings								= shortcode_atts(
 			array(
 				'inline'						=> false,
