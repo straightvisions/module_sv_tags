@@ -19,16 +19,13 @@ class sv_tags extends init {
 	}
 
 	public function init() {
-		// Translates the module
-		load_theme_textdomain( 'sv_tags', $this->get_path( 'languages' ) );
-
 		// Module Info
 		$this->set_module_title( 'SV Tags' );
-		$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', 'sv_tags' ) );
+		$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', 'sv_100' ) );
 
 		// Section Info
-		$this->set_section_title( 'Tags' );
-		$this->set_section_desc( __( 'Manage Tags', 'sv_tags' ) );
+		$this->set_section_title( __( 'Tags', 'sv_100' ) );
+		$this->set_section_desc( __( 'Manage Tags', 'sv_100' ) );
 		$this->set_section_type( 'settings' );
 		$this->get_root()->add_section( $this );
 
@@ -43,7 +40,7 @@ class sv_tags extends init {
 			->create( $this )
 			->set_ID( 'limit' )
 			->set_title( 'Max number of tags in list.' )
-			->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv_tags' ) )
+			->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv_100' ) )
 			->load_type( 'number' );
 
 		return $this;
