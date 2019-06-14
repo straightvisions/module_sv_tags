@@ -18,7 +18,7 @@ $i										        = 0;
 
 <div class="<?php echo $this->get_prefix( 'wrapper' ); ?>">
 	<span class="<?php echo $this->get_prefix( 'title' ); ?>">
-		<?php _e( 'Tags', 'sv_100' ); ?>
+		<?php _e( 'Tags', 'straightvisions_100' ); ?>
 	</span>
 	<div class="<?php echo $this->get_prefix(); ?>">
 	<?php
@@ -30,7 +30,7 @@ $i										        = 0;
 		if ( $i <= ( $settings['limit'] ? $settings['limit'] : 3 ) ) {
 		?>
 		<a href="<?php echo $tag_link; ?>"
-		   title="<?php echo esc_attr( sprintf( __( 'View all posts in %s', 'sv_100' ), $tag ) ); ?>">
+		   title="<?php echo esc_attr( sprintf( __( 'View all posts in %s', 'straightvisions_100' ), $tag ) ); ?>">
 			<?php echo $tag; ?>
 		</a>
 		<?php
