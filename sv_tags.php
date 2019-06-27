@@ -1,10 +1,10 @@
 <?php
-namespace sv_100;
+namespace sv100;
 
 /**
  * @version         1.00
  * @author			straightvisions GmbH
- * @package			sv_100
+ * @package			sv100
  * @copyright		2017 straightvisions GmbH
  * @link			https://straightvisions.com
  * @since			1.0
@@ -17,11 +17,11 @@ class sv_tags extends init {
 	public function init() {
 		// Module Info
 		$this->set_module_title( 'SV Tags' );
-		$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', 'straightvisions-100' ) );
+		$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', 'sv100' ) );
 
 		// Section Info
-		$this->set_section_title( __( 'Tags', 'straightvisions-100' ) );
-		$this->set_section_desc( __( 'Manage Tags', 'straightvisions-100' ) );
+		$this->set_section_title( __( 'Tags', 'sv100' ) );
+		$this->set_section_desc( __( 'Manage Tags', 'sv100' ) );
 		$this->set_section_type( 'settings' );
 		$this->get_root()->add_section( $this );
 
@@ -32,8 +32,8 @@ class sv_tags extends init {
 		$this->s['limit'] = static::$settings
 			->create( $this )
 			->set_ID( 'limit' )
-			->set_title( __( 'Max number of tags in list.', 'straightvisions-100' ) )
-			->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'straightvisions-100' ) )
+			->set_title( __( 'Max number of tags in list.', 'sv100' ) )
+			->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv100' ) )
 			->load_type( 'number' );
 
 		return $this;
