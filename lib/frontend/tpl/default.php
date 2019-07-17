@@ -14,11 +14,11 @@
 		$counts							= array_reverse( $counts, true );
 		$i								= 0;
 	?>
-	<div class="<?php echo $this->get_prefix( 'wrapper' ); ?>">
+	<div class="<?php echo $this->get_prefix(); ?>">
 		<span class="<?php echo $this->get_prefix( 'title' ); ?>">
 			<?php _e( 'Tags', 'sv100' ); ?>
 		</span>
-		<div class="<?php echo $this->get_prefix(); ?>">
+		<div class="<?php echo $this->get_prefix( 'wrapper' ); ?>">
 		<?php
 			foreach ( $counts as $t => $count ) {
 				$i++;
