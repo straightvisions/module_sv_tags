@@ -1,18 +1,18 @@
 <?php
-	$tags							 = get_tags( array( 'pad_counts' => true ) );
+	$tags							= get_tags( array( 'pad_counts' => true ) );
 	
 	if ( count( $tags ) > 0 ) {
-		$counts							= $tag_links = array();
+		$counts						= $tag_links = array();
 		
 		foreach ( $tags as $t ) {
-			$counts[ $t->name ]			= $t->count;
-			$tag_links[ $t->name ]		= get_tag_link( $t->term_id );
+			$counts[ $t->name ]		= $t->count;
+			$tag_links[ $t->name ]	= get_tag_link( $t->term_id );
 		}
 		
 		asort( $counts );
 		
-		$counts							= array_reverse( $counts, true );
-		$i								= 0;
+		$counts						= array_reverse( $counts, true );
+		$i							= 0;
 	?>
 	<div class="<?php echo $this->get_prefix(); ?>">
 		<span class="<?php echo $this->get_prefix( 'title' ); ?>">

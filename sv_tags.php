@@ -12,31 +12,24 @@
 	 */
 	
 	class sv_tags extends init {
-		private $tags								= false;
-	
 		public function init() {
-			// Module Info
-			$this->set_module_title( 'SV Tags' );
-			$this->set_module_desc( __( 'This module gives the ability to display tags in posts.', 'sv100' ) );
-	
-			// Section Info
-			$this->set_section_title( __( 'Tags', 'sv100' ) )
+			$this->set_module_title( 'SV Tags' )
+				 ->set_module_desc( __( 'Manages tags in posts.', 'sv100' ) )
+				 ->load_settings()
+				 ->register_scripts()
+				 ->set_section_title( __( 'Tags', 'sv100' ) )
 				 ->set_section_desc( __( 'Manage Tags', 'sv100' ) )
 				 ->set_section_type( 'settings' )
-				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) );
-			
-			$this->get_root()->add_section( $this );
-	
-			$this->load_settings()->register_scripts();
+				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
+				 ->get_root()
+				 ->add_section( $this );
 		}
 	
 		public function load_settings(): sv_tags {
-			$this->s['limit'] =
-				$this->get_setting()
-					 ->set_ID( 'limit' )
-					 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
-					 ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv100' ) )
-					 ->load_type( 'number' );
+			$this->get_setting( 'limit' )
+				 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
+				 ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv100' ) )
+				 ->load_type( 'number' );
 			
 			// Text Settings
 			$this->get_settings_component( 'font_family','font_family' );
@@ -45,32 +38,25 @@
 			$this->get_settings_component( 'line_height','line_height', 21 );
 			
 			// Color Settings
-			$this->s['title_color'] =
-				$this->get_setting()
-					 ->set_ID( 'title_color' )
-					 ->set_title( __( 'Title Color', 'sv100' ) )
-					 ->set_default_value( '#85868c' )
-					 ->load_type( 'color' );
 			$this->get_settings_component( 'bg_color','background_color', '#f7f7f7' );
 			$this->get_settings_component( 'highlight_color','highlight_color', '#358ae9' );
+			
+			$this->get_setting( 'title_color' )
+				 ->set_title( __( 'Title Color', 'sv100' ) )
+				 ->set_default_value( '#85868c' )
+				 ->load_type( 'color' );
 	
 			return $this;
 		}
 	
 		protected function register_scripts(): sv_tags{
 			// Register Styles
-			$this->scripts_queue['default'] =
-				static::$scripts
-					->create( $this )
-					->set_ID( 'default' )
-					->set_path( 'lib/frontend/css/default.css' )
-					->set_inline( true );
+			$this->get_script( 'default' )
+				 ->set_path( 'lib/frontend/css/default.css' );
 			
-			$this->scripts_queue['inline_config'] =
-				static::$scripts->create( $this )
-								->set_ID( 'inline_config' )
-								->set_path( 'lib/frontend/css/config.php' )
-								->set_inline( true );
+			$this->get_script( 'inline_config' )
+				 ->set_path( 'lib/frontend/css/config.php' )
+				 ->set_inline( true );
 	
 			return $this;
 		}
@@ -95,7 +81,7 @@
 			$template = array(
 				'name'      => 'default',
 				'scripts'   => array(
-					$this->scripts_queue[ 'default' ]->set_inline( $settings['inline'] ),
+					$this->get_script( 'default' )->set_inline( $settings['inline'] ),
 				),
 			);
 	
@@ -110,7 +96,7 @@
 				$script->set_is_enqueued();
 			}
 			
-			$this->scripts_queue['inline_config']->set_is_enqueued();
+			$this->get_script( 'inline_config' )->set_is_enqueued();
 	
 			// Loads the template
 			include ( $this->get_path('lib/frontend/tpl/' . $template['name'] . '.php' ) );
