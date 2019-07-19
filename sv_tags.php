@@ -14,11 +14,11 @@
 	class sv_tags extends init {
 		public function init() {
 			$this->set_module_title( 'SV Tags' )
-				 ->set_module_desc( __( 'Manages tags in posts.', 'sv100' ) )
+				 ->set_module_desc( __( 'Manages tags.', 'sv100' ) )
 				 ->load_settings()
 				 ->register_scripts()
 				 ->set_section_title( __( 'Tags', 'sv100' ) )
-				 ->set_section_desc( __( 'Manage Tags', 'sv100' ) )
+				 ->set_section_desc( __( 'Text & Color settings', 'sv100' ) )
 				 ->set_section_type( 'settings' )
 				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
 				 ->get_root()
@@ -28,7 +28,7 @@
 		public function load_settings(): sv_tags {
 			$this->get_setting( 'limit' )
 				 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
-				 ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv100' ) )
+				 ->set_description( __( 'You can define the max number of tags that should be displayed, by setting a limit.', 'sv100' ) )
 				 ->load_type( 'number' );
 			
 			// Text Settings
@@ -42,7 +42,7 @@
 			$this->get_settings_component( 'highlight_color','highlight_color', '#358ae9' );
 			
 			$this->get_setting( 'title_color' )
-				 ->set_title( __( 'Title Color', 'sv100' ) )
+				 ->set_title( __( 'Title color', 'sv100' ) )
 				 ->set_default_value( '#85868c' )
 				 ->load_type( 'color' );
 	
