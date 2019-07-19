@@ -34,16 +34,16 @@
 			// Text Settings
 			$this->get_settings_component( 'font_family','font_family' );
 			$this->get_settings_component( 'font_size','font_size', 14 );
-			$this->get_settings_component( 'text_color','text_color', '#85868c' );
+			$this->get_settings_component( 'text_color','text_color', '#828282' );
 			$this->get_settings_component( 'line_height','line_height', 21 );
 			
 			// Color Settings
-			$this->get_settings_component( 'bg_color','background_color', '#f7f7f7' );
-			$this->get_settings_component( 'highlight_color','highlight_color', '#358ae9' );
+			$this->get_settings_component( 'bg_color','background_color', '#f5f5f5' );
+			$this->get_settings_component( 'highlight_color','highlight_color', '#328ce6' );
 			
 			$this->get_setting( 'title_color' )
 				 ->set_title( __( 'Title color', 'sv100' ) )
-				 ->set_default_value( '#85868c' )
+				 ->set_default_value( '#828282' )
 				 ->load_type( 'color' );
 	
 			return $this;

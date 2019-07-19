@@ -24,7 +24,7 @@
 			<?php
 				echo $module->get_settings_component( 'bg_color' )->run_type()->form();
 				echo $module->get_settings_component( 'highlight_color' )->run_type()->form();
-				echo $module->get_setting( 'title_color' )->run_type()->get_data();
+				echo $module->get_setting( 'title_color' )->run_type()->form();
 			?>
 		</div>
 		<?php
