@@ -29,6 +29,7 @@
 			$this->get_setting( 'limit' )
 				 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
 				 ->set_description( __( 'You can define the max number of tags that should be displayed, by setting a limit.', 'sv100' ) )
+				 ->set_default_value( 3 )
 				 ->load_type( 'number' );
 			
 			// Text Settings
