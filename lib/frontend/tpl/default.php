@@ -1,5 +1,5 @@
 <?php
-if(in_the_loop()){
+if(in_the_loop() && get_the_tags()){
 	?>
 	<div class="<?php echo $this->get_prefix(); ?>">
 		<span class="<?php echo $this->get_prefix( 'title' ); ?>">
@@ -12,7 +12,7 @@ if(in_the_loop()){
 		</div>
 	</div>
 	<?php
-}else {
+}elseif(!in_the_loop()) {
 	$tags = get_tags(array('pad_counts' => true));
 
 	if (count($tags) > 0) {
