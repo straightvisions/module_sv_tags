@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.000
+	 * @version         4.018
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -68,8 +68,8 @@
 			$settings			= shortcode_atts(
 				array(
 					'inline'	=> false,
-					'limit'		=> intval( $this->get_setting( 'limit' )->run_type()->get_data() )
-						? intval($this->get_setting( 'limit' )->run_type()->get_data() )
+					'limit'		=> intval( $this->get_setting( 'limit' )->get_data() )
+						? intval($this->get_setting( 'limit' )->get_data() )
 						: 5,
 				),
 				$settings,
