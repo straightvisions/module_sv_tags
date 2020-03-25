@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.018
+	 * @version         4.019
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -35,15 +35,41 @@
 				 ->load_type( 'number' );
 			
 			// Text Settings
-			$this->get_settings_component( 'font_family','font_family' );
-			$this->get_settings_component( 'font_size','font_size', 14 );
-			$this->get_settings_component( 'text_color','text_color', '#828282' );
-			$this->get_settings_component( 'line_height','line_height', 21 );
+			$this->get_setting( 'font_family' )
+				 ->set_title( __( 'Font Family', 'sv100' ) )
+				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
+				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
+				 ->load_type( 'select' );
+
+			$this->get_setting( 'font_size' )
+				 ->set_title( __( 'Font Size', 'sv100' ) )
+				 ->set_description( __( 'Font Size in pixel.', 'sv100' ) )
+				 ->set_default_value( 14 )
+				 ->load_type( 'number' );
+
+			$this->get_setting( 'line_height' )
+				 ->set_title( __( 'Line Height', 'sv100' ) )
+				 ->set_description( __( 'Set line height as multiplier or with a unit.', 'sv100' ) )
+				 ->set_default_value( 21 )
+				 ->load_type( 'text' );
+
+			$this->get_setting( 'text_color' )
+				 ->set_title( __( 'Text Color', 'sv100' ) )
+				 ->set_default_value( '#828282' )
+				 ->load_type( 'color' );
 			
 			// Color Settings
-			$this->get_settings_component( 'bg_color','background_color', '#f5f5f5' );
-			$this->get_settings_component( 'highlight_color','highlight_color', '#328ce6' );
-			
+			$this->get_setting( 'bg_color' )
+				 ->set_title( __( 'Background Color', 'sv100' ) )
+				 ->set_default_value( '#f5f5f5' )
+				 ->load_type( 'color' );
+
+			$this->get_setting( 'highlight_color' )
+				 ->set_title( __( 'Highlight Color', 'sv100' ) )
+				 ->set_description( __( 'This color is used for highlighting elements, like links on hover/focus.', 'sv100' ) )
+				 ->set_default_value( '#328ce6' )
+				 ->load_type( 'color' );
+
 			$this->get_setting( 'title_color' )
 				 ->set_title( __( 'Title color', 'sv100' ) )
 				 ->set_default_value( '#828282' )
