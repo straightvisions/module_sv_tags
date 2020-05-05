@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.000
+	 * @version         4.019
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -12,41 +12,80 @@
 	 */
 	
 	class sv_tags extends init {
-		private $tags								= false;
-	
 		public function init() {
-			// Module Info
-			$this->set_module_title( 'SV Tags' );
-			$this->set_module_desc( __( 'This module gives the ability to display and manage tags via the "[sv_tags]" shortcode.', 'sv100' ) );
-	
-			// Section Info
-			$this->set_section_title( __( 'Tags', 'sv100' ) );
-			$this->set_section_desc( __( 'Manage Tags', 'sv100' ) );
-			$this->set_section_type( 'settings' );
-			$this->get_root()->add_section( $this );
-	
-			$this->load_settings()->register_scripts();
+			$this->set_module_title( __( 'SV Tags', 'sv100' ) )
+				 ->set_module_desc( __( 'Manages tags.', 'sv100' ) )
+				 ->load_settings()
+				 ->register_scripts()
+				 ->set_section_title( __( 'Tags', 'sv100' ) )
+				 ->set_section_desc( __( 'Text & Color settings', 'sv100' ) )
+				 ->set_section_type( 'settings' )
+				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
+				 ->get_root()
+				 ->add_section( $this );
 		}
 	
 		public function load_settings(): sv_tags {
-			$this->s['limit'] =
-				$this->get_setting()
-					 ->set_ID( 'limit' )
-					 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
-					 ->set_description( __( 'You can define the number of tags that should be outputted on the website, by setting a limit.', 'sv100' ) )
-					 ->load_type( 'number' );
+			$this->get_setting( 'limit' )
+				 ->set_title( __( 'Max number of tags in list.', 'sv100' ) )
+				 ->set_description(
+				 	__( 'You can define the max number of tags that should be displayed, by setting a limit.', 'sv100' )
+				 )
+				 ->set_default_value( 3 )
+				 ->load_type( 'number' );
+			
+			// Text Settings
+			$this->get_setting( 'font_family' )
+				 ->set_title( __( 'Font Family', 'sv100' ) )
+				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
+				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
+				 ->load_type( 'select' );
+
+			$this->get_setting( 'font_size' )
+				 ->set_title( __( 'Font Size', 'sv100' ) )
+				 ->set_description( __( 'Font Size in pixel.', 'sv100' ) )
+				 ->set_default_value( 14 )
+				 ->load_type( 'number' );
+
+			$this->get_setting( 'line_height' )
+				 ->set_title( __( 'Line Height', 'sv100' ) )
+				 ->set_description( __( 'Set line height as multiplier or with a unit.', 'sv100' ) )
+				 ->set_default_value( 21 )
+				 ->load_type( 'text' );
+
+			$this->get_setting( 'text_color' )
+				 ->set_title( __( 'Text Color', 'sv100' ) )
+				 ->set_default_value( '#828282' )
+				 ->load_type( 'color' );
+			
+			// Color Settings
+			$this->get_setting( 'bg_color' )
+				 ->set_title( __( 'Background Color', 'sv100' ) )
+				 ->set_default_value( '#f5f5f5' )
+				 ->load_type( 'color' );
+
+			$this->get_setting( 'highlight_color' )
+				 ->set_title( __( 'Highlight Color', 'sv100' ) )
+				 ->set_description( __( 'This color is used for highlighting elements, like links on hover/focus.', 'sv100' ) )
+				 ->set_default_value( '#328ce6' )
+				 ->load_type( 'color' );
+
+			$this->get_setting( 'title_color' )
+				 ->set_title( __( 'Title color', 'sv100' ) )
+				 ->set_default_value( '#828282' )
+				 ->load_type( 'color' );
 	
 			return $this;
 		}
 	
 		protected function register_scripts(): sv_tags{
 			// Register Styles
-			$this->scripts_queue['default'] =
-				static::$scripts
-					->create( $this )
-					->set_ID( 'default' )
-					->set_path( 'lib/frontend/css/default.css' )
-					->set_inline( true );
+			$this->get_script( 'default' )
+				 ->set_path( 'lib/frontend/css/default.css' );
+			
+			$this->get_script( 'inline_config' )
+				 ->set_path( 'lib/frontend/css/config.php' )
+				 ->set_inline( true );
 	
 			return $this;
 		}
@@ -55,8 +94,8 @@
 			$settings			= shortcode_atts(
 				array(
 					'inline'	=> false,
-					'limit'		=> intval( $this->get_setting( 'limit' )->run_type()->get_data() )
-						? intval($this->get_setting( 'limit' )->run_type()->get_data() )
+					'limit'		=> intval( $this->get_setting( 'limit' )->get_data() )
+						? intval($this->get_setting( 'limit' )->get_data() )
 						: 5,
 				),
 				$settings,
@@ -71,7 +110,7 @@
 			$template = array(
 				'name'      => 'default',
 				'scripts'   => array(
-					$this->scripts_queue[ 'default' ]->set_inline( $settings['inline'] ),
+					$this->get_script( 'default' )->set_inline( $settings['inline'] ),
 				),
 			);
 	
@@ -81,9 +120,12 @@
 		// Loads the templates
 		protected function load_template( array $template, array $settings ): string {
 			ob_start();
+			
 			foreach ( $template['scripts'] as $script ) {
 				$script->set_is_enqueued();
 			}
+			
+			$this->get_script( 'inline_config' )->set_is_enqueued();
 	
 			// Loads the template
 			include ( $this->get_path('lib/frontend/tpl/' . $template['name'] . '.php' ) );
