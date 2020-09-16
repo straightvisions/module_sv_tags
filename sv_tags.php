@@ -38,7 +38,7 @@
 			$this->get_setting( 'font_family' )
 				 ->set_title( __( 'Font Family', 'sv100' ) )
 				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
-				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
+				 ->set_options( $this->get_module( 'sv_webfontloader' ) ? $this->get_module( 'sv_webfontloader' )->get_font_options() : array('' => __('Please activate module SV Webfontloader for this Feature.', 'sv100')) )
 				 ->load_type( 'select' );
 
 			$this->get_setting( 'font_size' )
