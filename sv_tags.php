@@ -15,8 +15,6 @@
 		public function init() {
 			$this->set_module_title( __( 'SV Tags', 'sv100' ) )
 				 ->set_module_desc( __( 'Manages tags.', 'sv100' ) )
-				 ->load_settings()
-				 ->register_scripts()
 				 ->set_section_title( __( 'Tags', 'sv100' ) )
 				 ->set_section_desc( __( 'Text & Color settings', 'sv100' ) )
 				 ->set_section_type( 'settings' )
@@ -91,6 +89,10 @@
 		}
 	
 		public function load( $settings = array() ): string {
+			if(!is_admin()){
+				$this->load_settings()->register_scripts();
+			}
+
 			$settings			= shortcode_atts(
 				array(
 					'inline'	=> false,
