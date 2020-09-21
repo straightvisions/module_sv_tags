@@ -26,44 +26,51 @@
 				->load_type('number');
 
 			// Text Settings
-			$this->get_setting('font_family')
+			$this->get_setting('font')
 				->set_title(__('Font Family', 'sv100'))
 				->set_description(__('Choose a font for your text.', 'sv100'))
 				->set_options($this->get_module('sv_webfontloader') ? $this->get_module('sv_webfontloader')->get_font_options() : array('' => __('Please activate module SV Webfontloader for this Feature.', 'sv100')))
+				->set_is_responsive(true)
 				->load_type('select');
 
 			$this->get_setting('font_size')
 				->set_title(__('Font Size', 'sv100'))
 				->set_description(__('Font Size in pixel.', 'sv100'))
 				->set_default_value(14)
+				->set_is_responsive(true)
 				->load_type('number');
 
 			$this->get_setting('line_height')
 				->set_title(__('Line Height', 'sv100'))
 				->set_description(__('Set line height as multiplier or with a unit.', 'sv100'))
 				->set_default_value(21)
+				->set_is_responsive(true)
 				->load_type('text');
 
 			$this->get_setting('text_color')
 				->set_title(__('Text Color', 'sv100'))
 				->set_default_value('#828282')
+				->set_is_responsive(true)
 				->load_type('color');
 
 			// Color Settings
 			$this->get_setting('bg_color')
 				->set_title(__('Background Color', 'sv100'))
 				->set_default_value('#f5f5f5')
+				->set_is_responsive(true)
 				->load_type('color');
 
 			$this->get_setting('highlight_color')
 				->set_title(__('Highlight Color', 'sv100'))
 				->set_description(__('This color is used for highlighting elements, like links on hover/focus.', 'sv100'))
 				->set_default_value('#328ce6')
+				->set_is_responsive(true)
 				->load_type('color');
 
 			$this->get_setting('title_color')
 				->set_title(__('Title color', 'sv100'))
 				->set_default_value('#828282')
+				->set_is_responsive(true)
 				->load_type('color');
 
 			return $this;
