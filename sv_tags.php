@@ -43,7 +43,6 @@
 			$this->get_setting('line_height')
 				->set_title(__('Line Height', 'sv100'))
 				->set_description(__('Set line height as multiplier or with a unit.', 'sv100'))
-				->set_default_value(21)
 				->set_is_responsive(true)
 				->load_type('text');
 
