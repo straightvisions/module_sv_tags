@@ -13,7 +13,10 @@
 		</div>
 		<?php
 	}elseif(!in_the_loop()) {
-		$tags = get_tags(array('pad_counts' => true));
+		$tags = get_tags(array(
+				'pad_counts' => true,
+				'number'		=> $this->get_setting('limit')->get_data()
+		));
 
 		if (count($tags) > 0) {
 			$counts = $tag_links = array();
@@ -38,15 +41,12 @@
 							$i++;
 							$tag_link = esc_url($tag_links[$t]);
 							$t = str_replace(' ', '&nbsp;', esc_html($t));
-
-							if ($i <= ($settings['limit'] ? $settings['limit'] : 3)) {
-								?>
-								<a href="<?php echo $tag_link; ?>"
-								   title="<?php echo esc_attr(sprintf(__('View all posts in %s', 'sv100'), $t)); ?>">
-									<?php echo $t; ?>
-								</a>
-								<?php
-							}
+							?>
+							<a href="<?php echo $tag_link; ?>"
+							   title="<?php echo esc_attr(sprintf(__('View all posts in %s', 'sv100'), $t)); ?>">
+								<?php echo $t; ?>
+							</a>
+							<?php
 						}
 					?>
 				</div>

@@ -72,6 +72,27 @@
 				->set_is_responsive(true)
 				->load_type('color');
 
+			$this->get_setting( 'margin' )
+				->set_title( __( 'Margin', 'sv100' ) )
+				->set_is_responsive(true)
+				->set_default_value(array(
+					'top'		=> '0',
+					'right'		=> 'auto',
+					'bottom'	=> '0',
+					'left'		=> 'auto'
+				))
+				->load_type( 'margin' );
+
+			$this->get_setting( 'padding' )
+				->set_title( __( 'Padding', 'sv100' ) )
+				->set_is_responsive(true)
+				->load_type( 'margin' );
+
+			$this->get_setting( 'border' )
+				->set_title( __( 'Border', 'sv100' ) )
+				->set_is_responsive(true)
+				->load_type( 'border' );
+
 			return $this;
 		}
 		public function load( $settings = array() ): string {
@@ -82,17 +103,6 @@
 					$script->set_is_enqueued();
 				}
 			}
-
-			$settings			= shortcode_atts(
-				array(
-					'inline'	=> false,
-					'limit'		=> intval( $this->get_setting( 'limit' )->get_data() )
-						? intval($this->get_setting( 'limit' )->get_data() )
-						: 5,
-				),
-				$settings,
-				$this->get_module_name()
-			);
 
 			// Loads the template
 			ob_start();

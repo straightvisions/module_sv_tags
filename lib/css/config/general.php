@@ -1,4 +1,12 @@
 <?php
+	echo $_s->build_css(
+		'.sv100_sv_tags',
+		array_merge(
+			$module->get_setting('padding')->get_css_data('padding'),
+			$module->get_setting('margin')->get_css_data(),
+			$module->get_setting('border')->get_css_data()
+		)
+	);
 
 	echo $_s->build_css(
 		'.sv100_sv_tags .sv100_sv_tags_wrapper a',
