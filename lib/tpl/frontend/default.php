@@ -1,5 +1,5 @@
 <?php
-	if(in_the_loop() && get_the_tags()){
+	if(get_the_tags()){
 		?>
 		<div class="<?php echo $this->get_prefix(); ?>">
 		<span class="<?php echo $this->get_prefix( 'title' ); ?>">
