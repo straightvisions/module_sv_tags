@@ -1,8 +1,7 @@
 .sv100_sv_tags {
 	display: flex;
 	flex-direction: column;
-	padding: 10px var( --sv100_sv_common-padding );
-	margin-top: 50px;
+	width:100%;
 }
 
 .sv100_sv_tags .sv100_sv_tags_title {
